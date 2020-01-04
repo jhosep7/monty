@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * FreeStack - Frees Stack when necessary
+ * FrStack - Frees Stack when necessary
  * @stack: stack
  * @lnum: line-number
  * Return: void
