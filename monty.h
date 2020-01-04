@@ -42,19 +42,17 @@ void (*f)(stack_t **stack, unsigned int line_number);
 
 /**
  * struct MyVar - opcode and its function
- * @keeper: saves the status of a variable
- * @test: checks status when needed int - char
- * Description: Reusable Variable
+ * @intvar: saves the status of a variable
+ * Description: Global Variable
  * for stack, queues, LIFO, FIFO Holberton project
  */
-typedef struct MyVar
+typedef struct ShareVar
 {
-int keeper;
-char test;
-} MyVar_t;
+int intvar;
+} ShareVar_t;
 
-extern MyVar_t GlobalV;
-MyVar_t GlobalV;
+extern ShareVar_t SharedVar;
+ShareVar_t SharedVar;
 
 /*get_opcode.c*/
 void get_opcode(char *tkn, stack_t **stack, int lnum);

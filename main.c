@@ -63,7 +63,7 @@ void TokenFun(char *temp, stack_t **stack, unsigned int lnum)
 			FrStack(stack, lnum);
 			exit(EXIT_FAILURE);
 		}
-		GlobalV.keeper = atoi(tkn), get_opcode(TempTkn, stack, lnum);
+		SharedVar.intvar = atoi(tkn), get_opcode(TempTkn, stack, lnum);
 	}
 	else
 	{get_opcode(tkn, stack, lnum); }

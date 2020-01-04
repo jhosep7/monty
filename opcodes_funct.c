@@ -22,7 +22,7 @@ void op_push(stack_t **stack, unsigned int lnum)
 		fprintf(stderr, "Error: malloc failed\n"), FrStack(stack, lnum);
 		exit(EXIT_FAILURE);
 	}
-	NewND->n = GlobalV.keeper;
+	NewND->n = SharedVar.intvar;
 	NewND->next = *stack;
 	NewND->prev = NULL;
 
@@ -58,7 +58,7 @@ void op_pall(stack_t **stack, unsigned int lnum)
  */
 void op_pint(stack_t **stack, unsigned int lnum)
 {
-	if (!(*stack) || !stack)
+	if (!(*stack))
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", lnum);
 		exit(EXIT_FAILURE);
@@ -77,16 +77,15 @@ void op_pint(stack_t **stack, unsigned int lnum)
  */
 void op_pop(stack_t **stack, unsigned int lnum)
 {
-	if (*stack == NULL || stack == NULL)
+	stack_t *Temp = *stack;
+
+	if (!*stack)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack", lnum);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", lnum);
 		exit(EXIT_FAILURE);
 	}
-	if ((*stack)->next)
-	{
-		*stack = (*stack)->next, GlobalV.keeper = (*stack)->n;
-		free((*stack)->prev), (*stack)->prev = NULL;
-	}
-	else
-	{free(*stack), *stack = NULL; }
+	*stack = (*stack)->next;
+	free(Temp);
+	if (*stack)
+		(*stack)->prev = NULL;
 }
