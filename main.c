@@ -51,7 +51,7 @@ void TokenFun(char *temp, stack_t **stack, unsigned int lnum)
 	char *tkn, *TempTkn;
 
 	tkn = strtok(temp, " ");
-	if ((*tkn) == ' ' || (*tkn) == '\n' || tkn == NULL)
+	if ((*tkn) == ' ' || (*tkn) == '\n' || tkn == NULL || *tkn == '#')
 	{return; }
 	if (strcmp(tkn, "push") == 0)
 	{
