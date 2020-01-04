@@ -52,3 +52,15 @@ void op_add(stack_t **stack, unsigned int num)
 	(*stack)->n += Temp;
 }
 
+/**
+ * op_nop - doesnt do anything
+ * @stack: the opcode
+ * @num: value
+ * Return: Void
+ */
+
+void op_nop(stack_t **stack, unsigned int num)
+{
+	UNUSED(stack);
+	UNUSED(num);
+}
