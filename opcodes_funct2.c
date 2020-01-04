@@ -3,17 +3,17 @@
 /**
  * op_swap - swaps the top two elements of the stack
  * @stack: the opcode
- * @num: value
+ * @lnum: value
  * Return: Void
  */
 
-void op_swap(stack_t **stack, unsigned int num)
+void op_swap(stack_t **stack, unsigned int lnum)
 {
 	stack_t *Temp;
 
 	if (!(*stack) || !((*stack)->next))
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", num);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", lnum);
 		exit(EXIT_FAILURE);
 	}
 
@@ -33,34 +33,35 @@ void op_swap(stack_t **stack, unsigned int num)
 /**
  * op_add - adds the top two elements of the stack
  * @stack: the opcode
- * @num: value
+ * @lnum: value
  * Return: Void
  */
 
-void op_add(stack_t **stack, unsigned int num)
+void op_add(stack_t **stack, unsigned int lnum)
 {
 	int Temp;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", num);
+		fprintf(stderr, "L%u: can't add, stack too short\n", lnum);
 		exit(EXIT_FAILURE);
 	}
 
 	Temp = (*stack)->n;
-	op_pop(stack, num);
+	op_pop(stack, lnum);
 	(*stack)->n += Temp;
 }
 
 /**
  * op_nop - doesnt do anything
  * @stack: the opcode
- * @num: value
+ * @lnum: value
  * Return: Void
  */
 
-void op_nop(stack_t **stack, unsigned int num)
+void op_nop(stack_t **stack, unsigned int lnum)
 {
 	UNUSED(stack);
-	UNUSED(num);
+	UNUSED(lnum);
 }
+
