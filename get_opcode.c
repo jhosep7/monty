@@ -17,6 +17,9 @@ void get_opcode(char *tkn, stack_t **stack, int lnum)
 	{"pall", op_pall},
 	{"pint", op_pint},
 	{"pop", op_pop},
+	{"swap", op_swap},
+	{"add", op_add},
+	{"nop", op_nop},
 	{NULL, NULL}
 	};
 
