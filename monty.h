@@ -62,13 +62,13 @@ void TokenFun(char *Temp, stack_t **stack, unsigned int lnum);
 int NumberCheck(char *tkn);
 
 /*opcodes_funct.c*/
-void op_push(stack_t **stack, unsigned int num);
-void op_pall(stack_t **stack, unsigned int num);
+void op_push(stack_t **stack, unsigned int lnum);
+void op_pall(stack_t **stack, unsigned int lnum);
 void op_pint(stack_t **stack, unsigned int lnum);
-void op_pop(stack_t **stack, unsigned int num);
-void op_swap(stack_t **stack, unsigned int num);
-void op_add(stack_t **stack, unsigned int num);
-void op_nop(stack_t **stack, unsigned int num);
+void op_pop(stack_t **stack, unsigned int lnum);
+void op_swap(stack_t **stack, unsigned int lnum);
+void op_add(stack_t **stack, unsigned int lnum);
+void op_nop(stack_t **stack, unsigned int lnum);
 
 void FrStack(stack_t **stack, unsigned int lnum);
 
