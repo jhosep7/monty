@@ -13,7 +13,6 @@ int main(int ac, char **av)
 	stack_t *stack = NULL;
 	FILE *fp;
 
-	GlobalV.test = 0;
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -79,6 +78,8 @@ int NumberCheck(char *tkn)
 {
 	if (tkn == NULL)
 	{return (0); }
+	if (*tkn == '-')
+	{tkn++;}
 	for (; *tkn != '\0'; tkn++)
 	{
 		if (!isdigit(*tkn))
