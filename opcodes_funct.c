@@ -1,133 +1,92 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
 
 /**
  * op_push - pushes an element to the stack
  * @stack: the opcode
- * @num: value 
- * return: 
+ * @lnum: value
+ * Return: Void
  */
-void op_push(stack_t **stack, unsigned int num)
+void op_push(stack_t **stack, unsigned int lnum)
 {
-	stack_t *new;
+	stack_t *NewND;
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
-		{
-			free(new);
-			fprintf(stderr,"Error: malloc failed");
-			exit (EXIT_FAILURE);
-		}
-		new->next = NULL;
-		new->prev = NULL;
-		new->n = num;
-
-	if (*stack == NULL)
+	if (!stack)
 	{
-		fprintf(stderr, "L%u: usage: push integer", num);
-		exit (EXIT_FAILURE);
+		fprintf(stderr, "L%d: unknown stack\n", lnum);
+		exit(EXIT_FAILURE);
 	}
-		new->next = *stack;
-		(*stack)->prev = new;
-		*stack = new;
+
+	NewND = malloc(sizeof(stack_t));
+	if (!NewND)
+	{
+		fprintf(stderr, "Error: malloc failed\n"), FrStack(stack, lnum);
+		exit(EXIT_FAILURE);
+	}
+	NewND->n = GlobalV.keeper;
+	NewND->next = *stack;
+	NewND->prev = NULL;
+
+	if ((*stack))
+	{(*stack)->prev = NewND; }
+	*stack = NewND;
 }
 
 /**
  * op_pall - prints all the values on the stack
  * @stack: the opcode
- * @num: value 
- * return: 
+ * @lnum: value
+ * Return: void
  */
-void op_pall(stack_t **stack, unsigned int num)
+void op_pall(stack_t **stack, unsigned int lnum)
 {
-	stack_t *new;
+	stack_t *MyPrint;
 
-	UNUSED(num);
-	new = *stack;
-
-	while (new != NULL)
+	if (!stack)
 	{
-		printf("%d\n", new->n);
-		new = new->next;
+		fprintf(stderr, "L%d: invalid stack\n", lnum);
+		exit(EXIT_FAILURE);
 	}
+	MyPrint = *stack;
+	while (MyPrint)
+	{printf("%d\n", MyPrint->n), MyPrint = MyPrint->next; }
 }
-
 /**
- * op_pint - prints the value at the top of the stack
+ * op_pint - prints all the values on the stack
  * @stack: the opcode
- * @num: value 
- * return: 
+ * @lnum: value
+ * Return: void
  */
-void op_pint(stack_t **stack, unsigned int num)
+void op_pint(stack_t **stack, unsigned int lnum)
 {
-	if (*stack == NULL || stack == NULL)
+	if (!(*stack) || !stack)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty", num);
-		exit (EXIT_FAILURE);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", lnum);
+		exit(EXIT_FAILURE);
 	}
-
-	printf("%d\n", (*stack)->n);
+	else
+	{
+		printf("%d\n", (*stack)->n);
+	}
 }
 
 /**
  * op_pop - removes the top element of the stack.
  * @stack: the opcode
- * @num: value 
- * return: 
+ * @lnum: value
+ * Return: void
  */
-void op_pop(stack_t **stack, unsigned int num)
+void op_pop(stack_t **stack, unsigned int lnum)
 {
-	stack_t *new;
-
 	if (*stack == NULL || stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack", num);
-		exit (EXIT_FAILURE);
+		fprintf(stderr, "L%d: can't pop an empty stack", lnum);
+		exit(EXIT_FAILURE);
 	}
-	new = *stack;
-	(*stack) = (*stack)->next;
-	free(new);
-}
-/**
- * op_swap - swaps the top two elements of the stack
- * @stack: the opcode
- * @num: value 
- * return: 
- */
-void op_swap(stack_t **stack, unsigned int num)
-{
-	stack_t *temp;
-	int len;
-
-	for (len = 0; *stack; len++)
+	if ((*stack)->next)
 	{
-		*stack = (*stack)->next;
+		*stack = (*stack)->next, GlobalV.keeper = (*stack)->n;
+		free((*stack)->prev), (*stack)->prev = NULL;
 	}
-
-	if (len < 2)
-	{
-		fprintf(stderr, "L%d: can't swap, stack too short", num);
-		exit (EXIT_FAILURE);
-	}
-	
-	temp = *stack;
-	*stack = temp->next;
-	temp->next = (*stack)->next;
-	(*stack)->next = temp;
-}
-/**
- * op_add - adds the top two elements of the stack
- * @stack: the opcode
- * @num: value 
- * return: 
- */
-void op_add(stack_t **stack, unsigned int num)
-{
-	
-}
-
-void op_nop(stack_t **stack, unsigned int num)
-{
-	
+	else
+	{free(*stack), *stack = NULL; }
 }

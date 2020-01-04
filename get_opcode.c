@@ -1,36 +1,34 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
 
 /**
 * **get_opcode - contain the function that selects the correct function
-* @s: string
-* @num: value
-* Return: 
+* @stack: char
+* @lnum: int
+* @tkn: token
+* Return: void
 */
 
-void *get_opcode(char *s, int num)
+void get_opcode(char *tkn, stack_t **stack, int lnum)
 {
+	int i;
+
 	instruction_t ops[] = {
 	{"push", op_push},
 	{"pall", op_pall},
 	{"pint", op_pint},
 	{"pop", op_pop},
-	{"swap", op_swap},
-	{"add", op_add},
-	{"nop", op_nop},
 	{NULL, NULL}
 	};
 
-	int i = 0;
-
-	while (i <= 7)
+	for (i = 0; ops[i].opcode != NULL; i++)
 	{
-		if (ops[i].opcode[0] == *s)
+		if (strcmp(tkn, ops[i].opcode) == 0)
 		{
-			return (ops[i].f);
+			ops[i].f(stack, lnum);
+			return;
 		}
-		i++;
 	}
-
+	fprintf(stderr, "L%d: unknown instruction %s\n", lnum, tkn);
+	FrStack(stack, lnum);
+	exit(EXIT_FAILURE);
 }
