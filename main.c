@@ -9,7 +9,8 @@
 int main(int ac, char **av)
 {
 	char *temp, *buffer = NULL;
-	size_t lnum = 1, i = 0;
+	unsigned int lnum = 1;
+	size_t i = 0;
 	stack_t *stack = NULL;
 	FILE *fp;
 
@@ -79,7 +80,7 @@ int NumberCheck(char *tkn)
 	if (tkn == NULL)
 	{return (0); }
 	if (*tkn == '-')
-	{tkn++;}
+	{tkn++; }
 	for (; *tkn != '\0'; tkn++)
 	{
 		if (!isdigit(*tkn))
