@@ -37,7 +37,7 @@ void get_opcode(char *tkn, stack_t **stack, int lnum)
 			return;
 		}
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", lnum, tkn);
+	fprintf(stderr, "L%u: unknown instruction %s\n", lnum, tkn);
 	FrStack(stack, lnum);
 	exit(EXIT_FAILURE);
 }

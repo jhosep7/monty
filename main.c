@@ -24,14 +24,13 @@ int main(int ac, char **av)
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&buffer, &i, fp) != -1)
+	for (lnum = 1; getline(&buffer, &i, fp) != -1; lnum++)
 	{
 		if (*buffer)
 		{
 			temp = strtok(buffer, "\n");
 			TokenFun(temp, &stack, lnum);
 		}
-		lnum++;
 	}
 	fclose(fp), free(buffer);
 	if (stack)
@@ -59,7 +58,7 @@ void TokenFun(char *temp, stack_t **stack, unsigned int lnum)
 		tkn = strtok(NULL, "");
 		if (!NumberCheck(tkn))
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", lnum);
+			fprintf(stderr, "L%u: usage: push integer\n", lnum);
 			FrStack(stack, lnum);
 			exit(EXIT_FAILURE);
 		}
@@ -78,6 +77,8 @@ int NumberCheck(char *tkn)
 {
 	if (tkn == NULL)
 	{return (0); }
+	if (*tkn == '-')
+	{tkn++; }
 	for (; *tkn != '\0'; tkn++)
 	{
 		if (!isdigit(*tkn))
