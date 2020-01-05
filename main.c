@@ -78,6 +78,8 @@ int NumberCheck(char *tkn)
 {
 	if (tkn == NULL)
 	{return (0); }
+	if (*tkn == '-')
+	{tkn++; }
 	for (; *tkn != '\0'; tkn++)
 	{
 		if (!isdigit(*tkn))
