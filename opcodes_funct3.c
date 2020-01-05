@@ -21,7 +21,7 @@ void op_div(stack_t **stack, unsigned int lnum)
 
 	if (Temp == 0)
 	{
-		printf("L%u: division by zero\n", lnum);
+		fprintf(stderr, "L%u: division by zero\n", lnum);
 		exit(EXIT_FAILURE);
 	}
 	op_pop(stack, lnum);
@@ -49,7 +49,7 @@ void op_mod(stack_t **stack, unsigned int lnum)
 
 	if (Temp == 0)
 	{
-		printf("L%u: division by zero\n", lnum);
+		fprintf(stderr, "L%u: division by zero\n", lnum);
 		exit(EXIT_FAILURE);
 	}
 	op_pop(stack, lnum);
