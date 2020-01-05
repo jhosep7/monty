@@ -65,8 +65,8 @@ void op_mod(stack_t **stack, unsigned int lnum)
 void op_pstr(stack_t **stack, unsigned int lnum)
 {
 	stack_t *Temp;
-	UNUSED(lnum);
 
+	UNUSED(lnum);
 	if (!(*stack) || SharedVar.intvar == 0 || !stack)
 	{
 		printf("\n");

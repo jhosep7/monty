@@ -24,11 +24,10 @@ void op_push(stack_t **stack, unsigned int lnum)
 	}
 
 	NewND->n = SharedVar.intvar;
-
-	if (*stack)
-	{(*stack)->prev = NewND; }
 	NewND->next = *stack;
 	NewND->prev = NULL;
+	if (*stack)
+	{(*stack)->prev = NewND; }
 	*stack = NewND;
 }
 
