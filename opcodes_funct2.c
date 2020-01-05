@@ -102,7 +102,7 @@ void op_mul(stack_t **stack, unsigned int lnum)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short\n", lnum);
+		fprintf(stderr, "L%u: can't mul, stack too short\n", lnum);
 		exit(EXIT_FAILURE);
 	}
 
@@ -110,3 +110,4 @@ void op_mul(stack_t **stack, unsigned int lnum)
 	op_pop(stack, lnum);
 	(*stack)->n *= Temp;
 }
+
