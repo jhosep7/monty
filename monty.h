@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define UNUSED(x) (void)(x)
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -41,7 +43,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct MyVar - opcode and its function
+ * struct ShareVar - opcode and its function
  * @intvar: saves the status of a variable
  * Description: Global Variable
  * for stack, queues, LIFO, FIFO Holberton project
