@@ -75,8 +75,10 @@ void TokenFun(char *temp, stack_t **stack, unsigned int lnum)
  */
 int NumberCheck(char *tkn)
 {
-	if (tkn == NULL)
+	if (!tkn)
 	{return (0); }
+	if (*tkn == '-')
+	{tkn++; }
 	for (; *tkn != '\0'; tkn++)
 	{
 		if (!isdigit(*tkn))
