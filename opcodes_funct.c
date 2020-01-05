@@ -8,7 +8,7 @@
  */
 void op_push(stack_t **stack, unsigned int lnum)
 {
-	stack_t *NewND;
+	stack_t *NewND = NULL;
 
 	if (!stack)
 	{
@@ -22,12 +22,13 @@ void op_push(stack_t **stack, unsigned int lnum)
 		fprintf(stderr, "Error: malloc failed\n"), FrStack(stack, lnum);
 		exit(EXIT_FAILURE);
 	}
+
 	NewND->n = SharedVar.intvar;
+
+	if (*stack)
+	{(*stack)->prev = NewND; }
 	NewND->next = *stack;
 	NewND->prev = NULL;
-
-	if ((*stack))
-	{(*stack)->prev = NewND; }
 	*stack = NewND;
 }
 
@@ -88,4 +89,26 @@ void op_pop(stack_t **stack, unsigned int lnum)
 	free(Temp);
 	if (*stack)
 		(*stack)->prev = NULL;
+}
+
+/**
+ * op_pchar - prints the string starting at the top of the stack.
+ * @stack: the opcode
+ * @lnum: value
+ * Return: void
+ */
+void op_pchar(stack_t **stack, unsigned int lnum)
+{
+	if (!stack || !(*stack))
+	{
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", lnum);
+		exit(EXIT_FAILURE);
+	}
+	if (isascii(SharedVar.intvar))
+	{printf("%c\n", SharedVar.intvar); }
+	else
+	{
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", lnum);
+		exit(EXIT_FAILURE);
+	}
 }

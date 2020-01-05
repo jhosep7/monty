@@ -68,6 +68,7 @@ void op_push(stack_t **stack, unsigned int lnum);
 void op_pall(stack_t **stack, unsigned int lnum);
 void op_pint(stack_t **stack, unsigned int lnum);
 void op_pop(stack_t **stack, unsigned int lnum);
+void op_pchar(stack_t **stack, unsigned int lnum);
 
 /*opcodes_funct2.c*/
 void op_swap(stack_t **stack, unsigned int lnum);
@@ -79,6 +80,7 @@ void op_mul(stack_t **stack, unsigned int lnum);
 /*opcodes_funct3.c*/
 void op_div(stack_t **stack, unsigned int lnum);
 void op_mod(stack_t **stack, unsigned int lnum);
+void op_pstr(stack_t **stack, unsigned int lnum);
 
 void FrStack(stack_t **stack, unsigned int lnum);
 

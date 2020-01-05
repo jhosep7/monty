@@ -6,7 +6,6 @@
  * @lnum: value
  * Return: Void
  */
-
 void op_swap(stack_t **stack, unsigned int lnum)
 {
 	stack_t *Temp;
@@ -36,7 +35,6 @@ void op_swap(stack_t **stack, unsigned int lnum)
  * @lnum: value
  * Return: Void
  */
-
 void op_add(stack_t **stack, unsigned int lnum)
 {
 	int Temp;
@@ -58,7 +56,6 @@ void op_add(stack_t **stack, unsigned int lnum)
  * @lnum: value
  * Return: Void
  */
-
 void op_nop(stack_t **stack, unsigned int lnum)
 {
 	UNUSED(stack);
@@ -72,7 +69,6 @@ void op_nop(stack_t **stack, unsigned int lnum)
  * @lnum: value
  * Return: Void
  */
-
 void op_sub(stack_t **stack, unsigned int lnum)
 {
 	int Temp;
@@ -95,7 +91,6 @@ void op_sub(stack_t **stack, unsigned int lnum)
  * @lnum: value
  * Return: Void
  */
-
 void op_mul(stack_t **stack, unsigned int lnum)
 {
 	int Temp;

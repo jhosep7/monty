@@ -24,6 +24,8 @@ void get_opcode(char *tkn, stack_t **stack, int lnum)
 	{"mul", op_mul},
 	{"div", op_div},
 	{"mod", op_mod},
+	{"pchar", op_pchar},
+	{"pstr", op_pstr},
 	{NULL, NULL}
 	};
 
